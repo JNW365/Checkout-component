@@ -4,3 +4,12 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.fa-usps,
+.fa-ups {
+  font-size: 1.5rem;
+}
+
+.fa-fedex {
+  font-size: 2rem;
+}
