@@ -138,7 +138,7 @@
                           <div class="col">Total:</div>
                           <div class="col">$9.99</div>
                         </div>
-                        <button class="btn btn-secondary w-100">Place Order</button>
+                        <button type="button" class="btn btn-secondary w-100" id="place-order">Place Order</button>
                       </form>
                     </div>
                   </div>
@@ -148,9 +148,41 @@
           </div>
         </div>
       </div>
-      
     </div>
-
+    <!-- Order Confirmation Toast -->
+    <div class="toast-container d-flex justify-content-center position-fixed">
+      <div class="toast show w-50" id="confirmation" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+        <div class="toast-header">
+          <img src="logo-transparent-png.png" alt="" class="img-fluid w-75">
+          <button type="button"class="btn-close" data-bs-dismiss="toast" aria-label="close"></button>
+        </div>
+        <div class="toast-body bg-light">
+          <div class="row">
+            
+            <div class="col text-center mb-3">
+              <p class="lead">Thank You For Your Order!</p>
+              <h5>Summary</h5>
+            </div>
+          </div>
+          <div class="row text-start">
+            <div class="col">
+              <p class="fw-semibold">Order Number:</p>
+            </div>
+            <div class="col">
+              <p>98-02-AF</p>
+            </div>
+          </div>
+          <div class="row text-start">
+            <div class="col">
+              <p class="fw-semibold">Order Total:</p>
+            </div>
+            <div class="col">
+              <p>$10.95</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
   </body>
