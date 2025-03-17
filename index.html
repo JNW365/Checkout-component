@@ -15,7 +15,7 @@
         <div class="col text-center">
           <img src="logo-transparent-png.png" alt="" class="img-fluid w-50">
           <h1 class="h3">Shopping Cart</h1>
-          <p class="h3">There are <span id="items-cart" class="fw-medium">1</span> items in your cart</p>
+          <p class="lead fs-3">There are <span id="items-cart" class="fw-medium">1</span> items in your cart</p>
         </div>
       </div>
       <hr>
@@ -28,13 +28,13 @@
               <p class="card-text text-start" id="description"></p>
             </div>
             <div class="col-2 d-flex flex-row">
-              <div class="input-group ">
+              <div class="input-group" style="max-width: 110px;">
                 <button class="btn btn-secondary" id="add">+</button>
-                <input type="text" class="form-control" id="quantity">
+                <input type="text" class="form-control" id="quantity" value="1" readonly>
                 <button class="btn btn-secondary" id="subtract">-</button>
               </div>
             </div>
-            <div class="col ms-2 lead fw-semibold" id="item-price">$9.99</div>
+            <div class="col ms-2 lead fw-semibold" id="item-price"></div>
           </div>
         </div>
       <!-- Customer Info -->
