@@ -32,9 +32,43 @@ getProductData().then(data => {
 
 
 // Incrementing Product Quantity
-let counter = 2;
+const quantity = document.getElementById('quantity');
+const addBtn = document.getElementById('add');
+const subtractBtn = document.getElementById('subtract');
+const itemsInCart = document.getElementById('items-cart');
+const itemTotal = document.getElementById('item-price');
+
+let productData = null;
 
 getProductData().then(data => {
-    let myPrice = data.price * counter;
-    productPrice.textContent = `$${myPrice}`;
-})
+    productData = data;
+    updatePrice();  
+});
+
+function updatePrice() {
+    if (productData) {
+        let myPrice = productData.price * parseInt(quantity.value, 10);
+        productPrice.textContent = `$${myPrice.toFixed(2)}`;
+    } 
+}
+
+
+addBtn.addEventListener('click', () => {
+    quantity.value = parseInt(quantity.value, 10) + 1;
+    itemsInCart.textContent = quantity.value;
+    updatePrice();
+});
+
+subtractBtn.addEventListener('click', () => {
+    if (parseInt(quantity.value, 10) > 1) {
+        quantity.value = parseInt(quantity.value, 10) - 1;
+        itemsInCart.textContent = quantity.value;
+        updatePrice();
+    }
+});
+
+
+
+
+
+
