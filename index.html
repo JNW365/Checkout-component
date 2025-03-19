@@ -11,7 +11,7 @@
   </head>
   <body>
     <div class="container border border-secondary-subtle p-5">
-      <div class="row">
+      <div class="row border bg-light">
         <div class="col text-center">
           <img src="logo-transparent-png.png" alt="" class="img-fluid w-50">
           <h1 class="h3">Shopping Cart</h1>
@@ -20,24 +20,28 @@
       </div>
       <hr>
       <div class="row text-center">
-        <div class="col">
-          <div class="card d-flex flex-row align-items-center p-2">
-            <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Mzg5MDIwMzh8&ixlib=rb-4.0.3&q=80&w=400" alt="" class="img-fluid w-75">
+        <div class="col-8 border">
+          <div class="card d-flex flex-row align-items-center justify-content-center">
+            <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Mzg5MDIwMzh8&ixlib=rb-4.0.3&q=80&w=400" alt="" class="img-fluid w-25">
+            <div class="col border">
+              
+            </div>
             <div class="card-body">
               <h5 class="card-title text-start" id="title"></h5>
               <p class="card-text text-start" id="description"></p>
-            </div>
-            <div class="col-2 d-flex flex-row">
+              <div class="col d-flex flex-row">
               <div class="input-group" style="max-width: 110px;">
                 <button class="btn btn-secondary" id="add">+</button>
                 <input type="text" class="form-control" id="quantity" value="1" readonly>
                 <button class="btn btn-secondary" id="subtract">-</button>
               </div>
             </div>
-            <div class="col-2 ms-2 lead fw-semibold" id="item-price"></div>
+            </div>
+            <div class="col p-2 lead fw-semibold" id="item-price"></div>
           </div>
-          
+          <h5 class="text-start fw-normal my-3">Total in Cart: <span class="fw-semibold" id="totalInCart"></span></h5>
         </div>
+      
       <!-- Customer Info -->
         <div class="col-4 border">
           <h2>Customer Information</h2>

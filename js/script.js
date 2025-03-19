@@ -49,6 +49,7 @@ function updatePrice() {
     if (productData) {
         let myPrice = productData.price * parseInt(quantity.value, 10);
         productPrice.textContent = `$${myPrice.toFixed(2)}`;
+        document.getElementById('totalInCart').innerHTML = `$${myPrice}`;
     } 
 }
 
