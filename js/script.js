@@ -14,62 +14,109 @@ if(toastTrigger) {
 
 // **Products in Cart**
 
-// get data for product card from api
+// Get data for product card from API
 let productTitle = document.getElementById('title');
 let productDescription = document.getElementById('description');
 let productPrice = document.getElementById('item-price');
 
-function getProductData() {
-    return fetch('https://dummyjson.com/products/1')
-        .then(res => res.json());
+async function getProductData() {
+    let response = await fetch('https://dummyjson.com/products/1');
+    return response.json();
 }
-
-getProductData().then(data => {
-    productTitle.textContent = data.title;
-    productDescription.textContent = data.description;
-    // productPrice.textContent = `$${data.price}`;
-});
-
-
-// Incrementing Product Quantity
-const quantity = document.getElementById('quantity');
-const addBtn = document.getElementById('add');
-const subtractBtn = document.getElementById('subtract');
-const itemsInCart = document.getElementById('items-cart');
-const itemTotal = document.getElementById('item-price');
 
 let productData = null;
 
 getProductData().then(data => {
     productData = data;
-    updatePrice();  
+    productTitle.textContent = data.title;
+    productDescription.textContent = data.description;
+    productPrice.textContent = `$${data.price}`;
+    updateOrderTotal();  // Ensure the total is calculated when data loads
 });
 
-function updatePrice() {
-    if (productData) {
-        let myPrice = productData.price * parseInt(quantity.value, 10);
-        productPrice.textContent = `$${myPrice.toFixed(2)}`;
-        document.getElementById('totalInCart').innerHTML = `$${myPrice}`;
-    } 
+// Elements for quantity update
+const quantity = document.getElementById('quantity');
+const addBtn = document.getElementById('add');
+const subtractBtn = document.getElementById('subtract');
+const itemsInCart = document.getElementById('items-cart');
+
+// Elements for order total
+const totalInCart = document.getElementById('totalInCart');
+const subtotal = document.getElementById('subtotal');
+const shippingCostElement = document.getElementById('shippingTotal');
+const orderTotal = document.getElementById('orderTotal');
+
+// Shipping method selection
+let shippingMethods = document.querySelectorAll('input[name="radio-shipping"]');
+
+// Function to calculate and update the total price
+function updateOrderTotal() {
+    if (!productData) return;
+
+    // Calculate item subtotal
+    let itemSubtotal = productData.price * parseInt(quantity.value, 10);
+
+    // Get the selected shipping cost
+    let selectedShipping = document.querySelector('input[name="radio-shipping"]:checked');
+    let shippingCost = selectedShipping ? parseFloat(selectedShipping.value) : 0;
+
+    // Calculate final order total
+    let finalTotal = itemSubtotal + shippingCost;
+
+    // Update UI
+    totalInCart.textContent = `$${itemSubtotal.toFixed(2)}`;
+    subtotal.textContent = `$${itemSubtotal.toFixed(2)}`;
+    shippingCostElement.textContent = `$${shippingCost.toFixed(2)}`;
+    orderTotal.textContent = `$${finalTotal.toFixed(2)}`;
 }
 
-
+// Event listeners for quantity buttons
 addBtn.addEventListener('click', () => {
     quantity.value = parseInt(quantity.value, 10) + 1;
     itemsInCart.textContent = quantity.value;
-    updatePrice();
+    updateOrderTotal();
 });
 
 subtractBtn.addEventListener('click', () => {
     if (parseInt(quantity.value, 10) > 1) {
         quantity.value = parseInt(quantity.value, 10) - 1;
         itemsInCart.textContent = quantity.value;
-        updatePrice();
+        updateOrderTotal();
     }
 });
 
+// Event listener for shipping method change
+shippingMethods.forEach(shippingMethod => {
+    shippingMethod.addEventListener('change', updateOrderTotal);
+});
+
+// Ensure order total updates on page load
+updateOrderTotal();
 
 
-
-
-
+// Form Validation
+(() => {
+    'use strict'
+  
+    const forms = document.querySelectorAll('.needs-validation')
+  
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+  
+          // Auto-open the accordion section that has the first error
+          const firstInvalid = form.querySelector(':invalid');
+          const collapse = firstInvalid.closest('.accordion-collapse');
+          if (collapse && !collapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(collapse, { toggle: false });
+            bsCollapse.show();
+          }
+        }
+  
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+  
