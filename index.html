@@ -47,7 +47,7 @@
           <h2>Customer Information</h2>
           <img src="https://xsgames.co/randomusers/avatar.php?g=female" alt="" class="w-25">
           <h3 class="h4 my-3">Joanie Graydon</h3>
-          <form class="needs-validation" novalidate>
+          <form class="needs-validation" id="checkout-form" novalidate>
             <div class="accordion accordion-flush" id="checkout">
               
               <!-- Shipping Address -->
@@ -162,6 +162,10 @@
                         </div>
           
                         <button type="submit" class="btn btn-secondary w-100" id="place-order">Place Order</button>
+                        <button class="btn btn-secondary w-100 d-none" id="processing">
+                          <span class="spinner-border spinner-border-sm me-2" ></span>
+                          Processing...
+                        </button>
                       </div>
                     </div>
                   </div>

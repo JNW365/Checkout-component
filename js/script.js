@@ -1,17 +1,5 @@
 // Add custom JavaScript here
 
-// Triggering Toast
-
-const toastTrigger = document.getElementById('place-order');
-const toast = document.getElementById('confirmation');
-
-if(toastTrigger) {
-    const confirmToast = bootstrap.Toast.getOrCreateInstance(toast);
-    toastTrigger.addEventListener('click', () => {
-        confirmToast.show();
-    })
-}
-
 // **Products in Cart**
 
 // Get data for product card from API
@@ -105,7 +93,7 @@ updateOrderTotal();
         if (!form.checkValidity()) {
           event.preventDefault()
           event.stopPropagation()
-  
+            console.log('form not complete')
           // Auto-open the accordion section that has the first error
           const firstInvalid = form.querySelector(':invalid');
           const collapse = firstInvalid.closest('.accordion-collapse');
@@ -113,6 +101,22 @@ updateOrderTotal();
             const bsCollapse = new bootstrap.Collapse(collapse, { toggle: false });
             bsCollapse.show();
           }
+        } else {
+          //  Prevent default submission even if valid
+          event.preventDefault();
+          let processing = document.getElementById('processing');
+          processing.classList.remove('d-none');
+          document.getElementById('place-order').classList.add('d-none');
+          
+          setTimeout(() => {
+            const toast = document.getElementById('confirmation');
+            const confirmToast = bootstrap.Toast.getOrCreateInstance(toast);
+            processing.classList.add('d-none');
+          document.getElementById('place-order').classList.remove('d-none');
+            confirmToast.show();
+            console.log('form complete')
+          }, 2000)
+          
         }
   
         form.classList.add('was-validated')
