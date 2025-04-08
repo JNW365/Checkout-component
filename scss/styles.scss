@@ -14,3 +14,13 @@ body {
 .fa-fedex {
     font-size: 2rem;
 }
+
+// Product image sizing
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .limit-lg-size {
+      max-width: 50%; /* or 600px or whatever looks right */
+      margin: 0 auto;
+      display: block; /* if you want it centered */
+    }
+  }
+  
