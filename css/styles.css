@@ -5,13 +5,8 @@ body {
   align-items: center;
 }
 
-.fa-usps,
-.fa-ups {
+.fa-brands {
   font-size: 1.5rem;
-}
-
-.fa-fedex {
-  font-size: 2rem;
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {

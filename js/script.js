@@ -50,7 +50,7 @@ function updateOrderTotal() {
 
     // Calculate final order total
     let finalTotal = itemSubtotal + shippingCost;
-
+    document.getElementById('orderTot').textContent = `$${finalTotal}`;
     // Update UI
     totalInCart.textContent = `$${itemSubtotal.toFixed(2)}`;
     subtotal.textContent = `$${itemSubtotal.toFixed(2)}`;
@@ -114,6 +114,8 @@ updateOrderTotal();
             processing.classList.add('d-none');
           document.getElementById('place-order').classList.remove('d-none');
             confirmToast.show();
+
+
             console.log('form complete')
           }, 2000)
           
@@ -124,3 +126,76 @@ updateOrderTotal();
     })
   })()
   
+  // Functions for toast
+
+  const orderNumber = document.getElementById('orderNum');
+  orderNumber.textContent = "LB-" + `${Math.floor(1000 + Math.random() * 9)}`;
+
+  const orderDate = document.getElementById('orderDate');
+  let date = new Date();
+  orderDate.textContent = date.toDateString();
+  
+
+  // Choose shipping address and add to toast
+  document.addEventListener('DOMContentLoaded', () => {
+    const shippingAddresses = document.querySelectorAll('input[name="radio-address"]');
+    const cardOnFile = document.querySelectorAll('input[name="radio-card"]');
+
+  shippingAddresses.forEach((address) => {
+    address.addEventListener('change', (event) => {
+      if(event.target.id === 'radio-address-one') {
+        document.querySelector('.address-ship').innerHTML = '<p>Joanie Graydon<br>6587 Wilma Path<br>Cameronberk, KY 56876</p>';
+        
+      } else if (event.target.id === 'radio-address-two') {
+        document.querySelector('.address-ship').innerHTML = '<p>Joanie Graydon<br>5610 Schowalter Terrace<br>West Glen, KY 56888</p>';
+        
+      }
+    })
+  })
+  // Choose shipping method and add to toast
+     shippingMethods.forEach((method) => {
+      method.addEventListener('change', (event) => {
+        if(event.target.id === "radio-shipping-one") {
+          document.getElementById('shipMeth').innerHTML = '<p><i class="fa-brands fa-usps me-2"></i>USPS Priority Mail $9.99</p>';
+        } else if(event.target.id === "radio-shipping-two") {
+          document.getElementById('shipMeth').innerHTML = '<p><i class="fa-brands fa-ups me-2"></i>UPS Ground $15.49</p>';
+        } else if (event.target.id === "radio-shipping-three") {
+          document.getElementById('shipMeth').innerHTML = '<p><i class="fa-brands fa-ups me-2"></i>UPS Next Day $24.95</p>';
+        }
+      })
+     })
+
+    // Add card info to form and add to toast 
+    cardOnFile.forEach((card) => {
+      card.addEventListener('change', (event) => {
+        if(event.target.id === 'card1') {
+          document.getElementById('cardholder-name').value = 'Joanie Graydon';
+          document.getElementById('card-number').value = `${"4889-1252-0221-2273"}`;
+          document.getElementById('exp').value = `${"08/29"}`;
+          document.getElementById('cvv').value = 823;
+          document.getElementById('paymentMeth').innerHTML = '<i class="fa-brands fa-cc-visa mx-2"></i>ending 2273'
+        } else if (event.target.id === 'card2') {
+          document.getElementById('cardholder-name').value = 'Joanie Graydon';
+          document.getElementById('card-number').value = `${"5178-3530-5184-4247"}`;
+          document.getElementById('exp').value = `${"11/29"}`;
+          document.getElementById('cvv').value = 256;
+          document.getElementById('paymentMeth').innerHTML = '<i class="fa-brands fa-cc-mastercard mx-2"></i>ending 4247'
+        }
+      })
+    })
+
+  });
+
+  
+
+
+  
+// clear form after toast close
+const toastEl = document.getElementById('confirmation');
+const form = document.getElementById('checkout-form');
+
+toastEl.addEventListener('hidden.bs.toast', () => {
+  form.reset();
+  form.classList.remove('was-validated');
+});
+
