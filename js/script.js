@@ -58,11 +58,26 @@ function updateOrderTotal() {
     orderTotal.textContent = `$${finalTotal.toFixed(2)}`;
 }
 
+// update cart heading
+function updateCartMessage() {
+  let item = document.getElementById('item');
+  const count = parseInt(quantity.value, 10);
+
+  if (count === 1) {
+    item.textContent = 'item';
+  } else {
+    item.textContent = 'items';
+  }
+}
+
+
+
 // Event listeners for quantity buttons
 addBtn.addEventListener('click', () => {
     quantity.value = parseInt(quantity.value, 10) + 1;
     itemsInCart.textContent = quantity.value;
     updateOrderTotal();
+    updateCartMessage();
 });
 
 subtractBtn.addEventListener('click', () => {
@@ -70,8 +85,27 @@ subtractBtn.addEventListener('click', () => {
         quantity.value = parseInt(quantity.value, 10) - 1;
         itemsInCart.textContent = quantity.value;
         updateOrderTotal();
+        updateCartMessage();
     }
 });
+
+// Reset counter on page restore 
+function resetCart() {
+  quantity.value = 1;
+  itemsInCart.textContent = "1";
+  updateOrderTotal();
+  updateCartMessage();
+}
+
+// Reset on regular page load
+document.addEventListener('DOMContentLoaded', resetCart);
+
+// Reset on back/forward navigation (just in case)
+window.addEventListener('pageshow', resetCart);
+
+
+
+
 
 // Event listener for shipping method change
 shippingMethods.forEach(shippingMethod => {
