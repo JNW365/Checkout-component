@@ -10,22 +10,19 @@
     <title>Checkout Page</title>
   </head>
   <body>
-    <div class="container border border-secondary-subtle p-5">
-      <header class="row border bg-light">
+    <div class="container border border-2 border-primary p-4 my-3 rounded">
+      <header class="row border border-primary bg-light rounded">
         <div class="col text-center">
-          <img src="logo-transparent-png.png" alt="" class="img-fluid w-50">
+          <img src="logo-transparent-png.png" alt="" class="img-fluid w-75">
           <h1 class="h3">Shopping Cart</h1>
           <p class="lead fs-3">You have <span id="items-cart" class="fw-medium">1</span> <span id="item">item</span> in your cart</p>
         </div>
       </header>
-      <hr>
+      <hr class="border border-secondary">
       <div class="row text-center">
         <div class="col-md-6 col-lg-8">
-          <div class="card d-flex flex-md-column flex-lg-row justify-content-center align-items-center">
+          <div class="card border border-primary d-flex flex-md-column flex-lg-row justify-content-center align-items-center">
             <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Mzg5MDIwMzh8&ixlib=rb-4.0.3&q=80&w=400" alt="" class="img-fluid limit-lg-size w-xl-50">
-            <div class="col border">
-              
-            </div>
             <div class="card-body">
               <h5 class="card-title text-start" id="title"></h5>
               <p class="card-text text-start" id="description"></p>
@@ -43,7 +40,7 @@
         </div>
       
       <!-- Customer Info -->
-        <div class="col-md-6 col-lg-4 border">
+        <div class="col-md-6 col-lg-4 border border-primary rounded">
           <h2>Customer Information</h2>
           <img src="https://xsgames.co/randomusers/avatar.php?g=female" alt="" class="w-50 rounded-5">
           <h3 class="h4 my-3">Joanie Graydon</h3>
@@ -178,7 +175,7 @@
                           <div class="col" id="orderTotal"></div>
                         </div>
                         <button type="submit" class="btn btn-secondary w-100" id="place-order">Place Order</button>
-                        <button class="btn btn-secondary w-100 d-none" id="processing">
+                        <button class="btn btn-primary w-100 d-none" id="processing">
                           <span class="spinner-border spinner-border-sm me-2" ></span>
                           Processing...
                         </button>
@@ -197,7 +194,7 @@
     </div>
     <!-- Order Confirmation Toast -->
     <div class="toast-container d-flex justify-content-center">
-      <div class="toast w-75" id="confirmation" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+      <div class="toast w-75 border border-2 border-primary" id="confirmation" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
         <div class="toast-header position-relative">
           <img src="logo-transparent-png.png" alt="" class="img-fluid w-75 m-auto">
           <button type="button"class="btn-close position-absolute top-0 end-0 m-2" data-bs-dismiss="toast" aria-label="close"></button>
@@ -205,50 +202,45 @@
         <div class="toast-body bg-light">
           <div class="row mb-3">
             <div class="col text-center">
-              <p class="h5">Thank You for your order!</p>
-              <p class="h5">Order Summary</p>
+              <p class="h3">Thank You for your order!</p>
+              <p class="h3">Order Summary</p>
             </div>
           </div>
+          
           <div class="row">
-            <div class="col-md-6 text-center">
-              <p class="fw-bold">Order Number: <span class="fw-normal" id="orderNum"></span></p>
+            <div class="toast-grid d-grid">
+              <div class="col-md-6 text-start">
+                <p class="fw-bold fs-6">Order Number: <span class="fw-normal" id="orderNum"></span></p>
+              </div>
+              <div class="col-md-6 text-start">
+                <p class="fw-bold fs-6">Order Date: <span class="fw-normal" id="orderDate"></span></p>
+              </div>
+              <div class="col-md-6 text-start">
+                <p class="fw-bold me-2 fs-6">Payment Method: <span class="fw-normal" id="paymentMeth"></span></p>
+              </div>
+              <div class="col-md-6 text-start">
+                <p class="fw-bold fs-6">Order Total: <span class="fw-normal" id="orderTot"></span></p>
+              </div>
+              <div class="row">
+                <div class="col-6 col-lg-auto d-none d-md-block">
+                  <p class="fw-bold fs-6">Shipping Address:</p>
+                </div>
+                <div class="col-6 col-lg-auto d-none d-md-block address-ship fs-6"></div>
+              </div>
+              <div class="row">
+                <div class="col-6 col-lg-auto d-none d-md-block">
+                  <p class="fw-bold fs-6">Billing Address:</p>
+                </div>
+                <div class="col-6 col-lg-auto d-none d-md-block address-two fs-6">
+                  <p>Joanie Graydon<br>
+                    5610 Schowalter Terrace<br>
+                    West Glen, KY 56888</p>
+                </div>
+              </div>
             </div>
-            <div class="col-md-6 text-center">
-              <p class="fw-bold">Order Date: <span class="fw-normal" id="orderDate"></span></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 text-center">
-              <p class="fw-bold me-2">Payment Method: <span class="fw-normal" id="paymentMeth"></span></p>
-            </div>
-            <div class="col-md-6 text-center">
-              <p class="fw-bold">Order Total: <span class="fw-normal" id="orderTot"></span></p>
-            </div>
-          </div>
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-12 col-lg-auto d-none d-md-block">
-              <p class="fw-bold">Shipping Address:</p>
-            </div>
-            <div class="col-md-12 col-lg-auto d-none d-md-block address-ship">
-              
-            </div>
-            <div class="col-md-12 col-lg-auto d-none d-md-block">
-              <p class="fw-bold">Billing Address:</p>
-            </div>
-            <div class="col-md-12 col-lg-auto d-none d-md-block address-two">
-              <p>Joanie Graydon<br>
-                5610 Schowalter Terrace<br>
-                West Glen, KY 56888</p>
-            </div>
-          </div>
-          <div class="row">
+          <div class="row my-3">
             <div class="col text-center">
-              <p class="fw-bold">Shipping Method: <span class="fw-normal" id="shipMeth">XXX</span></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col text-center">
-              <p class="h6">We’ll send you an email with full order details and tracking information when your order ships.</p>
+              <p class="h3">We’ll send you an email with full order details and tracking information when your order ships.</p>
             </div>
           </div>
         </div>

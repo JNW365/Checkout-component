@@ -11,8 +11,23 @@ body {
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .limit-lg-size {
-    max-width: 50%; /* or 600px or whatever looks right */
+    max-width: 30%; /* or 600px or whatever looks right */
     margin: 0 auto;
     display: block; /* if you want it centered */
   }
+}
+.toast-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  justify-items: center;
+}
+
+@media (max-width: 900px) {
+  .toast-grid {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}
+hr {
+  color: #ff6ca8;
 }
