@@ -1,8 +1,8 @@
 body {
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+
 }
 
 // Icon Styling
@@ -11,6 +11,7 @@ body {
 .fa-brands {
     font-size: 1.5rem;
 }
+
 
 
 // Product image sizing
@@ -42,3 +43,4 @@ $enable-grid-classes: true;
 hr {
     color: #ff6ca8;
 }
+
