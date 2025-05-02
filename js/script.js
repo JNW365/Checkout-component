@@ -146,12 +146,19 @@ updateOrderTotal();
             const toast = document.getElementById('confirmation');
             const confirmToast = bootstrap.Toast.getOrCreateInstance(toast);
             processing.classList.add('d-none');
-          document.getElementById('place-order').classList.remove('d-none');
+            document.getElementById('place-order').classList.remove('d-none');
             confirmToast.show();
+            // Close the accordion
+            const collapseEl = document.getElementById('accordion-three');
+            const bsCollapse = bootstrap.Collapse.getOrCreateInstance(collapseEl);
+            bsCollapse.hide();
+          }, 1000);
 
-
-            console.log('form complete')
-          }, 2000)
+          // scroll to top
+          setTimeout(() => {
+            window.scrollTo({top: 0, behavior: 'smooth'})
+          }, 1000)
+          
           
         }
   
